@@ -5,20 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "tsc && node ./dist/app.js",
-    "debug": "export DEBUG=* && npm start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "debug": "export DEBUG=* && npm start"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/makinhs/toptal-rest-series.git"
-  },
-  "keywords": [
-    "REST",
-    "API",
-    "ExpressJS",
-    "NodeJS",
-    "Toptal"
-  ],
   "author": "Giovani Cassiano",
   "license": "MIT",
   "dependencies": {
