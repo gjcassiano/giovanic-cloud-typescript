@@ -5,6 +5,7 @@ import express from 'express';
 
 export class UsersRoutes extends CommonRoutesConfig {
     constructor(app: express.Application) {
+        console.log('Created new instance of UsersRoutes');
         super(app, 'UsersRoutes');
     }
 

@@ -4,6 +4,10 @@ import {UserDto} from "../dto/user.dto";
 
 class UsersService implements CRUD {
 
+    constructor() {
+        console.log('Created new instance of UsersService');
+    }
+
     async create(resource: UserDto) {
         return UsersDao.addUser(resource);
     }

@@ -6,6 +6,9 @@ class UsersDao {
 
     constructor() {
         console.log('Created new instance of UsersDao');
+        for (let index = 0; index < 100; index++) {
+            this.users.push({id: index.toString(), email:'test' + index.toString() + '@email.com', password:'test' + index.toString()});
+        }
     }
 
     async addUser(user: UserDto) {

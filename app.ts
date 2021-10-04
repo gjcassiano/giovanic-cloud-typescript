@@ -1,6 +1,5 @@
 import express from 'express';
 import * as http from 'http';
-import * as bodyparser from 'body-parser';
 import cors from 'cors';
 import { CommonRoutesConfig } from './common/common.routes.config';
 import { UsersRoutes } from './users/users.routes.config';
@@ -10,7 +9,16 @@ const server: http.Server = http.createServer(app);
 const port = 8080;
 const routes: Array<CommonRoutesConfig> = [];
 
-app.use(bodyparser.json());
+
+app.use(function (req, res, next) {
+
+    const used = process.memoryUsage().heapUsed / 1024 / 1024;
+    console.log(`Server with memory used approximately ${Math.round(used * 100) / 100} MB`);
+    next();
+});
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
 routes.push(new UsersRoutes(app));
@@ -19,9 +27,15 @@ app.get('/', (req: express.Request, res: express.Response) => {
     res.status(200).send(`Server running at http://localhost:${port}`);
 });
 
+
+
 server.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
     routes.forEach((route: CommonRoutesConfig) => {
         console.log(`Routes configured for ${route.getName()}`);
     });
+
+    const used = process.memoryUsage().heapUsed / 1024 / 1024;
+    console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
+
 });
