@@ -1,10 +1,10 @@
 # Studying express on typescript
 
-## controllers, services, dao..
+## routers, controllers, services, dao..
 
 
 # Dockers
-> For emulate the datastore on docker just run the docker-compose up --d
+> Emulate the datastore on docker just run the |docker-compose up --d|
 
 # Running server
 > npm start

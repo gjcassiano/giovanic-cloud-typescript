@@ -3,6 +3,7 @@ import * as http from 'http';
 import cors from 'cors';
 import { CommonRoutesConfig } from './common/common.routes.config';
 import { UsersRoutes } from './users/users.routes.config';
+import { Utils } from './users/utils/utils';
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
@@ -11,9 +12,7 @@ const routes: Array<CommonRoutesConfig> = [];
 
 
 app.use(function (req, res, next) {
-
-    const used = process.memoryUsage().heapUsed / 1024 / 1024;
-    console.log(`Server with memory used approximately ${Math.round(used * 100) / 100} MB`);
+    Utils.printUsedMemory();
     next();
 });
 
@@ -35,7 +34,6 @@ server.listen(port, () => {
         console.log(`Routes configured for ${route.getName()}`);
     });
 
-    const used = process.memoryUsage().heapUsed / 1024 / 1024;
-    console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
+    Utils.printUsedMemory();
 
 });
